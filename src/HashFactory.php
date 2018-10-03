@@ -1,5 +1,7 @@
 <?php
 namespace Karamel\Hash;
+use Karamel\Hash\Drivers\BCrypt;
+use Karamel\Hash\Drivers\MD5;
 use Karamel\Hash\Drivers\SHA1;
 
 class HashFactory{
