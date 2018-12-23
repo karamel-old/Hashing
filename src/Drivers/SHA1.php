@@ -15,7 +15,7 @@ class SHA1 implements IHash
 
     public function make($string, $rounds = 10)
     {
-        return  $this->hash($string, $rounds);
+        return $this->hash($string, $rounds);
     }
 
     private function hash($string, $rounds)
@@ -23,16 +23,16 @@ class SHA1 implements IHash
         for ($i = 0; $i < pow(2, $rounds); $i++) {
             $string = sha1($this->salt . $string);
         }
-        return '$' . $rounds . '$' .$string;
+        return '$' . $rounds . '$' . $string;
     }
 
     public function verify($string, $hashedString)
     {
         $matches = [];
-        preg_match("/^\$([0-9]+)\$(.*)/i",$hashedString,$matches);
+        preg_match("/^\$([0-9]+)\$(.*)/i", $hashedString, $matches);
         $rounds = $matches[1];
         $baseString = $matches[2];
-        $newHashedString = $this->hash($baseString,$rounds);
+        $newHashedString = $this->hash($baseString, $rounds);
         return $newHashedString == $hashedString;
     }
 }
